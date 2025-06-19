@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./Header.module.scss";
-import { TelegramAuth } from "@/components/UX/TelegramAuth/TelegramAuth";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
