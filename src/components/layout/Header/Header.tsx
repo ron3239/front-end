@@ -9,14 +9,19 @@ export const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    
+    document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = "auto";
   };
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <nav className={styles.header_nav}>
-          <Link href="/" className={styles.logoLink}>
+          <Link href="/" className={styles.logoLink} onClick={closeMenu}>
             <Image
               src="/images/logo.svg"
               alt="Logo"
@@ -35,7 +40,7 @@ export const Header = () => {
               <Link
                 className={styles.header__link}
                 href="#reviews"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Отзывы
               </Link>
@@ -44,7 +49,7 @@ export const Header = () => {
               <Link
                 className={styles.header__link}
                 href="#buy"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Купить
               </Link>
@@ -54,7 +59,7 @@ export const Header = () => {
                 className={styles.header__link}
                 href="https://t.me/q0unique0"
                 target="_blank"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Поддержка{" "}
                 <Image
@@ -71,6 +76,7 @@ export const Header = () => {
             className={`${styles.menu_btn} ${isMenuOpen ? styles.active : ""}`}
             onClick={toggleMenu}
             aria-label="Меню"
+            aria-expanded={isMenuOpen}
           >
             <span className={styles.line}></span>
             <span className={styles.line}></span>

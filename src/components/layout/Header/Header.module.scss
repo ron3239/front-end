@@ -1,6 +1,10 @@
 ﻿.header {
     background-color: #08364D;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .container {
@@ -17,10 +21,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0px;
+    position: relative;
 }
 
 .header__logo {
     width: 105px;
+    height: auto;
 }
 
 .header__list {
@@ -29,27 +35,43 @@
     align-items: center;
     gap: 25px;
     font-weight: bold;
-    transition: all .5s;
+    transition: all 0.3s ease;
 }
 
+.header__item {
+    list-style: none;
+}
 
 .header__link {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: opacity 0.3s;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .telegram {
     width: 30px;
+    height: 30px;
 }
 
 .menu_btn {
     display: none;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 40px;
     height: 30px;
-    background-color: rgba(255, 0, 0, 0);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
 }
 
 .menu_btn span {
@@ -57,5 +79,49 @@
     height: 4px;
     border-radius: 15px;
     background-color: rgb(255, 255, 255);
-    transition: .4s;
+    transition: all 0.3s ease;
+    transform-origin: left center;
+}
+
+/* Стили для активного состояния меню */
+.menu_btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, -5px);
+}
+
+.menu_btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu_btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, 5px);
+}
+
+/* Мобильное меню */
+@media (max-width: 768px) {
+    .header__list {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: #08364D;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding-top: 80px;
+    }
+
+    .header__list.active {
+        right: 0;
+    }
+
+    .menu_btn {
+        display: flex;
+    }
+
+    .header__link {
+        font-size: 20px;
+    }
 }
