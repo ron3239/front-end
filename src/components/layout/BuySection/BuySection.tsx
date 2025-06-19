@@ -1,6 +1,6 @@
 ﻿'use client';
 import Image from 'next/image';
-import {  useState } from 'react';
+import { useState } from 'react';
 import styles from './BuySection.module.scss';
 
 const starOptions = [
@@ -17,25 +17,64 @@ const starOptions = [
 ];
 
 export const BuySection = () => {
-  const [selectedStars, setSelectedStars] = useState<number | null>(50);
+  const [selectedStars, setSelectedStars] = useState<number>(50);
+  const [username, setUsername] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Здесь будет логика отправки данных
+    console.log({ username, stars: selectedStars });
+    // Дальнейшая обработка (например, отправка на API)
+  };
 
+  const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    if (value >= 50 && value <= 50000) {
+      setSelectedStars(value);
+    }
+  };
+
+  const getPriceForStars = (stars: number) => {
+    const option = starOptions.find(opt => opt.value === stars);
+    return option ? option.price : stars * 1.5; // Дефолтная формула если не нашли в options
   };
 
   return (
     <section id="buy" className={styles.orderSection}>
       <div className={styles.container}>
         <form className={styles.orderForm} onSubmit={handleSubmit}>
-                          <div className="form-group">
-                    <label className="username"><Image src="images/Glass.svg" alt="" width={51} height={51}/> Username в телеграмм</label>
-                    <input type="text" id="username" name="username" required/>
-                </div>
+          <div className={styles.formGroup}>
+            <label className={styles.usernameLabel}>
+              <Image 
+                src="/images/Glass.svg" 
+                alt="Иконка пользователя" 
+                width={24} 
+                height={24}
+                className={styles.icon}
+              />
+              Username в телеграм
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={styles.inputField}
+              placeholder="Ваш @username"
+            />
+          </div>
           
           <div className={styles.formGroup}>
             <label htmlFor="stars">
-              <Image src="/images/premStar.svg" alt="" width={20} height={20} />
+              <Image 
+                src="/images/premStar.svg" 
+                alt="Иконка звезды" 
+                width={20} 
+                height={20}
+                className={styles.icon}
+              />
               Количество от 50 до 50000
             </label>
             <input
@@ -45,44 +84,44 @@ export const BuySection = () => {
               min="50"
               max="50000"
               required
-              value={selectedStars || ''}
-              onChange={(e) => setSelectedStars(Number(e.target.value))}
+              value={selectedStars}
+              onChange={handleStarsChange}
+              className={styles.inputField}
             />
           </div>
+
           <div className={styles.starsSelection}>
             <div className={styles.starsGrid}>
               {starOptions.map((option) => (
-                <label key={option.value} className={styles.starOption}>
+                <button
+                  key={option.value}
+                  type="button"
+                  className={`${styles.starOption} ${
+                    selectedStars === option.value ? styles.selected : ''
+                  }`}
+                  onClick={() => setSelectedStars(option.value)}
+                >
                   <div className={styles.starOptionLeft}>
-                    <input
-                      type="radio"
-                      name="stars"
-                      value={option.value}
-                      checked={selectedStars === option.value}
-                      onChange={() => setSelectedStars(option.value)}
-                      className={styles.radioInput}
-                      required
-                    />
                     {Array.from({ length: option.stars }).map((_, i) => (
                       <Image
                         key={i}
                         src="/images/premStar.svg"
-                        alt=""
-                        width={50}
-                        height={50}
-                        className={`${styles.starOptionImg} ${i > 0 ? styles[`star${i + 1}`] : ''}`}
+                        alt="Звезда"
+                        width={20}
+                        height={20}
+                        className={styles.starIcon}
                       />
                     ))}
-                    {option.label}
+                    <span>{option.label}</span>
                   </div>
-                  <p>{option.price}₽</p>
-                </label>
+                  <span className={styles.price}>{option.price}₽</span>
+                </button>
               ))}
             </div>
           </div>
 
           <button type="submit" className={styles.buyButton}>
-            Купить { selectedStars!=null? `за ${selectedStars}₽`:""}
+            Купить за {getPriceForStars(selectedStars)}₽
           </button>
         </form>
       </div>
