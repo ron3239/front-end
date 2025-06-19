@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 
-export default async function handler(
+export default async function GET(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
