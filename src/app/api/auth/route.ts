@@ -1,17 +1,14 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import crypto from 'crypto';
 
-export default async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
-
-  const authData = req.query;
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const authData = Object.fromEntries(searchParams.entries());
 
   // 1. Проверяем обязательные поля
   if (!authData.id || !authData.hash) {
-    return res.status(400).json({ error: 'Invalid auth data' });
+    return NextResponse.json({ error: 'Invalid auth data' }, { status: 400 });
   }
 
   // 2. Проверяем хэш авторизации
@@ -30,15 +27,16 @@ export default async function GET(
     .digest('hex');
 
   if (hash !== authData.hash) {
-    return res.status(401).json({ error: 'Invalid hash' });
+    return NextResponse.json({ error: 'Invalid hash' }, { status: 401 });
   }
 
   // 3. Проверяем время авторизации (не старше 1 дня)
   if (Date.now() / 1000 - Number(authData.auth_date) > 86400) {
-    return res.status(401).json({ error: 'Auth data expired' });
+    return NextResponse.json({ error: 'Auth data expired' }, { status: 401 });
   }
 
   // 4. Возвращаем данные пользователя
-  res.setHeader('Set-Cookie', `tg_user=${JSON.stringify(authData)}; Path=/; HttpOnly`);
-  res.redirect('/');
+  const response = NextResponse.redirect(new URL('/', request.url));
+  response.cookies.set('tg_user', JSON.stringify(authData), { path: '/', httpOnly: true });
+  return response;
 }
