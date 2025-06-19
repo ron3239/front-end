@@ -66,9 +66,6 @@ export const Header = () => {
                 />
               </Link>
             </li>
-            <li className={styles.header__item}>
-              <TelegramAuth />
-            </li>
           </ul>
           <button
             className={`${styles.menu_btn} ${isMenuOpen ? styles.active : ""}`}
