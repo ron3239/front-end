@@ -1,0 +1,137 @@
+﻿.footer {
+  background-color: #08364D;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 1);
+  
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.headerLogo {
+  width: 105px;
+  height: auto;
+}
+
+.copyright {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  a {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.3s;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(221, 221, 221, 0.2);
+  margin: 20px 0;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mainLinks {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  
+  @media (max-width: 576px) {
+    gap: 15px;
+  }
+}
+
+.link {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity 0.3s;
+      display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 16px;
+  
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 576px) {
+    font-size: 13px;
+  }
+
+}
+
+.footerLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.telegramIcon {
+  transition: transform 0.3s;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}

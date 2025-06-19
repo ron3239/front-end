@@ -1,0 +1,101 @@
+.section {
+  width: 100%;
+  background-color: rgba(3, 22, 31, 1);
+  padding: 80px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.aboutContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 64px;
+  color: white;
+  
+  @media (max-width: 1200px) {
+    font-size: 48px;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 36px;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
+}
+
+.gold {
+  color: #FFD951;
+}
+
+.aboutStick {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Анимация для иконок */
+.aboutContent img {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Адаптивные стили */
+@media (max-width: 992px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .about {
+    margin-top: 70px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+  
+  .about {
+    margin-top: 50px;
+    gap: 30px;
+  }
+  
+  .aboutStick {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 30px 0;
+  }
+  
+  .about {
+    margin-top: 40px;
+    gap: 25px;
+  }
+}

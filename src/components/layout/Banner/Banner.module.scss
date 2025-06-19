@@ -1,0 +1,75 @@
+﻿.banner__section {
+    margin: 100px 0;
+}
+
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.banner__text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 50px;
+}
+
+.banner__h {
+    font-size: 80px;
+    font-weight: 900;
+}
+
+.banner_star {
+    width: 400px;
+    height: 400px;
+}
+
+
+@media (max-width: 1200px) {
+    .banner__h {
+        font-size: 60px;
+    }
+    
+    .banner_star {
+        width: 300px;
+        height: 300px;
+    }
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gold {
+    color: #FFD951;
+}
+
+.message__blue {
+    background: linear-gradient(0deg,rgba(19, 118, 168, 1) 0%, rgba(84, 0, 253, 1) 100%);
+    border-radius: 20px;
+    padding: 20px 25px 5px 15px;
+    text-align: end;
+}
+
+.message__black {
+    background-color: rgba(68, 68, 68, 0.58);
+    border-radius: 20px;
+    padding: 20px 25px 5px 15px;
+    text-align: end;
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+.time {
+    text-align: end;
+    font-size: 10px;
+    position: relative;
+    left: 10px;
+    color: rgba(255, 255, 255, 0.59);
+}

@@ -19,8 +19,74 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html {
+    user-select: none;
+    box-sizing: border-box;
+    background-color: rgba(3, 22, 31, 1);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+    font-family: "Inter", sans-serif;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    padding: 0;
+    background-color: none;
+    border: none;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gold {
+    color: #FFD951;
+}
+
+.message__blue {
+    background: linear-gradient(0deg,rgba(19, 118, 168, 1) 0%, rgba(84, 0, 253, 1) 100%);
+    border-radius: 20px;
+    padding: 20px 25px 5px 15px;
+    text-align: end;
+}
+
+.message__black {
+    background-color: rgba(68, 68, 68, 0.58);
+    border-radius: 20px;
+    padding: 20px 25px 5px 15px;
+    text-align: end;
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+.time {
+    text-align: end;
+    font-size: 10px;
+    position: relative;
+    left: 10px;
+    color: rgba(255, 255, 255, 0.59);
 }
