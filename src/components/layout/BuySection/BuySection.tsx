@@ -28,6 +28,10 @@ export const BuySection = () => {
     <section id="buy" className={styles.orderSection}>
       <div className={styles.container}>
         <form className={styles.orderForm} onSubmit={handleSubmit}>
+                          <div className="form-group">
+                    <label className="username"><Image src="images/Glass.svg" alt="" width={51} height={51}/> Username в телеграмм</label>
+                    <input type="text" id="username" name="username" required/>
+                </div>
           
           <div className={styles.formGroup}>
             <label htmlFor="stars">
