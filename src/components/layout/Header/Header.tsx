@@ -9,6 +9,7 @@ export const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    
   };
 
   return (
