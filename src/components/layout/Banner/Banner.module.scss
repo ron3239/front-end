@@ -28,8 +28,16 @@
 
 
 @media (max-width: 1200px) {
+    .banner__text{
+        align-items: center;
+    }
+    .banner{
+        align-items: center;
+        flex-direction: column;
+    }
     .banner__h {
         font-size: 60px;
+        text-align: center;
     }
     
     .banner_star {
