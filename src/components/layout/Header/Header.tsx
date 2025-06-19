@@ -1,7 +1,7 @@
 ﻿"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
@@ -9,27 +9,37 @@ export const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        setIsMenuOpen(false);
+        document.body.style.overflow = "auto";
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMenuOpen]);
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <nav className={styles.header_nav}>
-          <Link href="/" className={styles.logoLink}>
+          <Link href="/" className={styles.logoLink} onClick={() => setIsMenuOpen(false)}>
             <Image
               src="/images/logo.svg"
               alt="Logo"
               width={105}
               height={68}
               className={styles.header__logo}
+              priority
             />
           </Link>
 
-          <ul
-            className={`${styles.header__list} ${
-              isMenuOpen ? styles.active : ""
-            }`}
-          >
+          <ul className={`${styles.header__list} ${isMenuOpen ? styles.open : ""}`}>
             <li className={styles.header__item}>
               <Link
                 className={styles.header__link}
@@ -53,6 +63,7 @@ export const Header = () => {
                 className={styles.header__link}
                 href="https://t.me/q0unique0"
                 target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Поддержка{" "}
@@ -66,14 +77,16 @@ export const Header = () => {
               </Link>
             </li>
           </ul>
+
           <button
-            className={`${styles.menu_btn} ${isMenuOpen ? styles.active : ""}`}
+            className={`${styles.menu_btn} ${isMenuOpen ? styles.open : ""}`}
             onClick={toggleMenu}
-            aria-label="Меню"
+            aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={isMenuOpen}
           >
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
-            <span className={styles.line}></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </nav>
       </div>
