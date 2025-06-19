@@ -4,7 +4,7 @@ import {
   BuySection,
   Footer,
   Header,
-  HowItWorks,
+  // HowItWorks,
   Reviews,
 } from "@/components/layout";
 
