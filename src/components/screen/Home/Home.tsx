@@ -8,8 +8,6 @@ interface HomeProps {
 }
 
 export const qwe:FC<HomeProps> = ({
-  children,
-  className = '',
 }) => {
   return (
     <div></div>
