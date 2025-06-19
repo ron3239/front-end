@@ -13,10 +13,11 @@ export default function Home() {
     <main>
       <Header />
       <Banner />
-      <HowItWorks />
+      {/* <HowItWorks /> */}
       <Reviews />
-      <About />
+
       <BuySection />
+      <About />
       <Footer />
     </main>
   );

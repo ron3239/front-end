@@ -16,7 +16,6 @@ export const Footer = () => {
           />
           <p className={styles.copyright}>
             © 2025 Shop by Misst<br />
-            ИП Панов..
           </p>
         </div>
         <div className={styles.contact}>
