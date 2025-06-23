@@ -1,4 +1,4 @@
-type IForm={
-  userNama:string         
-  countStar:number       
-}
+// type IForm={
+//   userNama:string         
+//   countStar:number       
+// }

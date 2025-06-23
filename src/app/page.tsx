@@ -5,7 +5,7 @@ import {
   Footer,
   Header,
   // HowItWorks,
-  Reviews,
+  // Reviews,
 } from "@/components/layout";
 
 export default function Home() {
