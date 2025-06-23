@@ -21,7 +21,7 @@ export async function POST() {
     );
     
     return NextResponse.json(response.data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch user data" },
       { status: 500 }
