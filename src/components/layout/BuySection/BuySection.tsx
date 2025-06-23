@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import styles from './BuySection.module.scss';
+import axios from 'axios';
+
 
 const starOptions = [
   { value: 50, label: "50 Звезд", price: 75, stars: 1 },
@@ -25,6 +27,8 @@ export const BuySection = () => {
     // Здесь будет логика отправки данных
     console.log({ username, stars: selectedStars });
     // Дальнейшая обработка (например, отправка на API)
+    axios.post('/api/buyStar', {username, stars: selectedStars}).then((res)=>console.log(res.data))
+    // axios.get('https://fragment-api.net/ping').then((res)=>console.log(res))
   };
 
   const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
