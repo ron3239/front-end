@@ -18,13 +18,21 @@ export const Footer = () => {
             © 2025 Shop by Misst
             <br />
           </p>
+          <p className={styles.copyright}>
+            ИП Панов Дмитрий Алексеевич
+            <br />
+          </p>
           <div className={styles.infoDiv}>
             <p className={styles.copyright}>
-              jook323@gmail.com
+              misst2911@gmail.com
               <br />
             </p>
             <p className={styles.copyright}>
-              89267381383
+              ОРГНИП 325774600422421
+              <br />
+            </p>
+            <p className={styles.copyright}>
+              ИНН 972104272153
               <br />
             </p>
           </div>
