@@ -14,7 +14,7 @@ export const Footer = () => {
             width={105}
             height={68}
           />
-          <p className={styles.copyright}>
+          <p className={styles.copyrightBig}>
             © 2025 Shop by Misst
             <br />
           </p>
