@@ -55,7 +55,6 @@ export const SendTransaction = async (
 
     // 7. Подготовка транзакции
     const seqno = await walletContract.getSeqno();
-    const transferAmount = Math.floor(amount * 10**9).toString(); // Абсолютно точное преобразование в наноTON
 
     // 8. Отправка с ретраями
     let attempts = 0;
@@ -85,14 +84,13 @@ export const SendTransaction = async (
     }
 
     // 9. Ожидание подтверждения
-    let currentSeqno = seqno;
-    let confirmationAttempts = 0;
-    const maxConfirmationAttempts = 30;
+    // let currentSeqno = seqno;
+    // let confirmationAttempts = 0;
     
 
       // await sleep(2000);
-      currentSeqno = await walletContract.getSeqno();
-      confirmationAttempts++;
+      // currentSeqno = await walletContract.getSeqno();
+      // confirmationAttempts++;
       console.log(`Ожидание подтверждения... `);
     
 
