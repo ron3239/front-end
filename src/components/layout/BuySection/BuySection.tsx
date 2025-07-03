@@ -21,14 +21,17 @@ const starOptions = [
 export const BuySection = () => {
   const [selectedStars, setSelectedStars] = useState<number>(50);
   const [username, setUsername] = useState<string>('');
+  
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Здесь будет логика отправки данных
     console.log({ username, stars: selectedStars });
     // Дальнейшая обработка (например, отправка на API)
-    axios.post('/api/buyStar', {username, stars: selectedStars}).then((res)=>console.log(res.data))
-    // axios.get('https://fragment-api.net/ping').then((res)=>console.log(res))
+
+    const response = await axios.post(`/api/buyStar`,{username:username,quantity:selectedStars});
+    console.log(response);
+
   };
 
   const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +45,8 @@ export const BuySection = () => {
     const option = starOptions.find(opt => opt.value === stars);
     return option ? option.price : stars * 1.5; // Дефолтная формула если не нашли в options
   };
+
+
 
   return (
     <section id="buy" className={styles.orderSection}>

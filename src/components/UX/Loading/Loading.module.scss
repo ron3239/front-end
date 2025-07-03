@@ -1,0 +1,80 @@
+﻿.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.card {
+  background-color: #36464d;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.iconWrapper {
+    justify-content: center;
+    display: flex;
+  margin: 0 auto 1.5rem;
+}
+
+.icon {
+
+  width: 60px;
+  height: 60px;
+}
+
+.title {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.message {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+  
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.progressText {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -73,7 +73,7 @@ input::-webkit-inner-spin-button {
 }
 
 .message__blue {
-    background: linear-gradient(0deg,rgba(19, 118, 168, 1) 0%, rgba(84, 0, 253, 1) 100%);
+    background: linear-gradient(0deg,rgba(19, 118, 168, 1) 0%, #5400fd 100%);
     border-radius: 20px;
     padding: 20px 25px 5px 15px;
     text-align: end;
