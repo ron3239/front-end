@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { SendTransaction } from "@/utils/TonClient";
+import { error } from "console";
 
 const URL = `https://fragment.com/api?hash=${process.env.NEXT_PUBLIC_FRAGMENT_HASH}`;
   const HEADERS = {
@@ -76,7 +77,9 @@ const data = {
   
   const result = await SendTransaction(recipient, amount/ 1_000_000_000, payload)
   // getTestnetBalance('0QAUFc9Jm4bL9Y4E_SyYZ3uxmIe3pAkdbECXaAfV-IKTZprA')
-
+  if (result.status==500){
+    return NextResponse.json(result,{status:500})
+}
   const finish = {
     data: {
       transaction: result

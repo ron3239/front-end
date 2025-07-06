@@ -1,52 +1,68 @@
-﻿'use client';
-import Image from 'next/image';
-import { useState } from 'react';
-import styles from './BuySection.module.scss';
-import axios from 'axios';
-
+﻿"use client";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "./BuySection.module.scss";
+import axios from "axios";
 
 const starOptions = [
-  { value: 50, label: "50 Звезд", price: 75, stars: 1 },
-  { value: 100, label: "100 Звезд", price: 150, stars: 1 },
-  { value: 150, label: "150 Звезд", price: 225, stars: 2 },
-  { value: 250, label: "250 Звезд", price: 375, stars: 2 },
-  { value: 500, label: "500 Звезд", price: 750, stars: 3 },
-  { value: 1000, label: "1K Звезд", price: 1_500, stars: 3 },
-  { value: 5000, label: "5K Звезд", price: 7_500, stars: 3 },
-  { value: 10000, label: "10K Звезд", price: 15_000, stars: 4 },
-  { value: 25000, label: "25K Звезд", price: 37_500, stars: 4 },
-  { value: 50000, label: "50K Звезд", price: 75_000, stars: 4 },
+  { value: 50, label: "50 Звезд", stars: 1 },
+  { value: 100, label: "100 Звезд", stars: 1 },
+  { value: 150, label: "150 Звезд", stars: 2 },
+  { value: 250, label: "250 Звезд", stars: 2 },
+  { value: 500, label: "500 Звезд", stars: 3 },
+  { value: 1000, label: "1K Звезд", stars: 3 },
+  { value: 5000, label: "5K Звезд", stars: 3 },
+  { value: 10000, label: "10K Звезд", stars: 4 },
+  { value: 25000, label: "25K Звезд", stars: 4 },
+  { value: 50000, label: "50K Звезд", stars: 4 },
 ];
 
 export const BuySection = () => {
   const [selectedStars, setSelectedStars] = useState<number>(50);
-  const [username, setUsername] = useState<string>('');
-  
+  const [username, setUsername] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Автоматически корректируем значение если < 50
+  const validateStars = (value: number) => {
+    return value < 50 ? 50 : value;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь будет логика отправки данных
-    console.log({ username, stars: selectedStars });
-    // Дальнейшая обработка (например, отправка на API)
 
-    const response = await axios.post(`/api/buyStar`,{username:username,quantity:selectedStars});
-    console.log(response);
+    // Финализируем проверку числа перед отправкой
+    const finalStars = validateStars(selectedStars);
+    setSelectedStars(finalStars);
 
-  };
+    if (!username.trim()) {
+      alert("Пожалуйста, введите ваш username");
+      return;
+    }
 
-  const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (value >= 50 && value <= 50000) {
-      setSelectedStars(value);
+    try {
+      setIsLoading(true);
+      const response = await axios.post("/api/buyStar", {
+        username: username.trim(),
+        quantity: finalStars,
+      });
+      console.log(response)
+      alert("Покупка успешно оформлена!");
+    } catch (error) {
+      console.error("Ошибка при оформлении покупки:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const getPriceForStars = (stars: number) => {
-    const option = starOptions.find(opt => opt.value === stars);
-    return option ? option.price : stars * 1.5; // Дефолтная формула если не нашли в options
+  const handleBlur = () => {
+    setSelectedStars(validateStars(selectedStars));
   };
 
-
+  // Форматируем цену с разделителями тысяч
+  const formatPrice = (stars: number) => {
+    const price = Math.round(stars * 1.37 * 1.025);
+    return new Intl.NumberFormat('ru-RU').format(price);
+  };
 
   return (
     <section id="buy" className={styles.orderSection}>
@@ -54,10 +70,10 @@ export const BuySection = () => {
         <form className={styles.orderForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label className={styles.usernameLabel}>
-              <Image 
-                src="/images/Glass.svg" 
-                alt="Иконка пользователя" 
-                width={24} 
+              <Image
+                src="/images/Glass.svg"
+                alt="Иконка пользователя"
+                width={24}
                 height={24}
                 className={styles.icon}
               />
@@ -74,13 +90,13 @@ export const BuySection = () => {
               placeholder="Ваш @username"
             />
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="stars">
-              <Image 
-                src="/images/premStar.svg" 
-                alt="Иконка звезды" 
-                width={20} 
+              <Image
+                src="/images/premStar.svg"
+                alt="Иконка звезды"
+                width={20}
                 height={20}
                 className={styles.icon}
               />
@@ -90,11 +106,12 @@ export const BuySection = () => {
               type="number"
               id="stars"
               name="stars"
-              min="50"
-              max="50000"
               required
+              min="1"
+              placeholder="Введите количество"
               value={selectedStars}
-              onChange={handleStarsChange}
+              onChange={(e) => setSelectedStars(Number(e.target.value))}
+              onBlur={handleBlur}
               className={styles.inputField}
             />
           </div>
@@ -106,7 +123,7 @@ export const BuySection = () => {
                   key={option.value}
                   type="button"
                   className={`${styles.starOption} ${
-                    selectedStars === option.value ? styles.selected : ''
+                    selectedStars === option.value ? styles.selected : ""
                   }`}
                   onClick={() => setSelectedStars(option.value)}
                 >
@@ -123,14 +140,22 @@ export const BuySection = () => {
                     ))}
                     <span>{option.label}</span>
                   </div>
-                  <span className={styles.price}>{option.price}₽</span>
+                  <span className={styles.price}>
+                    {formatPrice(option.value)}₽
+                  </span>
                 </button>
               ))}
             </div>
           </div>
 
-          <button type="submit" className={styles.buyButton}>
-            Купить за {getPriceForStars(selectedStars)}₽
+          <button
+            type="submit"
+            className={styles.buyButton}
+            disabled={isLoading}
+          >
+            {isLoading
+              ? "Обработка..."
+              : `Купить за ${formatPrice(selectedStars)}₽`}
           </button>
         </form>
       </div>

@@ -2,10 +2,11 @@ import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { mnemonicToWalletKey } from "ton-crypto";
 import { TonClient, WalletContractV4, fromNano, internal } from "ton";
 import { Address } from "@ton/core";
+import { error } from "console";
 
 export const SendTransaction = async (
   recipient: string,
-  amount: number,
+  amount: number, // Токены TON
   payload: string = "Hello"
 ) => {
   try {
@@ -48,6 +49,8 @@ export const SendTransaction = async (
     try {
       balance = await walletContract.getBalance();
       console.log(`Balance: ${fromNano(balance)} TON`);
+      console.log(`amount: ${amount} TON`);
+      return {status:500,error: 'no have balance', balance: fromNano(balance)} //в долларах
     } catch (e) {
       console.error("Ошибка получения баланса:", e);
       throw e;

@@ -1,0 +1,218 @@
+﻿.termsModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(3, 22, 31, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.termsModal {
+  background: rgba(36, 46, 52, 0.95);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #68B5DC;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.termsModalHeader {
+  padding: 20px;
+  background: linear-gradient(90deg, #08364D 0%, #1376a8 100%);
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #68B5DC;
+  
+  h2 {
+    margin: 0;
+    color: #FFD951;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.termsModalContent {
+  padding: 25px;
+  overflow-y: auto;
+  flex-grow: 1;
+  color: #E0E0E0;
+  line-height: 1.6;
+  
+  /* Стилизация скроллбара */
+  scrollbar-width: thin;
+  scrollbar-color: #68B5DC rgba(36, 46, 52, 0.8);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(36, 46, 52, 0.8);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #68B5DC;
+    border-radius: 10px;
+  }
+
+  h3 {
+    color: #68B5DC;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+    
+    li {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.termsModalFooter {
+  padding: 20px;
+  background: rgba(36, 46, 52, 1);
+  border-top: 1px solid #36464D;
+  display: flex;
+  justify-content: center;
+}
+
+.termsAcceptButton {
+  width: 100%;
+  max-width: 300px;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #1376a8 0%, #5400fd 100%);
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(19, 118, 168, 0.3);
+  }
+
+  &:active:not(.disabled) {
+    transform: translateY(0);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover:not(.disabled)::after {
+    transform: translateX(100%);
+  }
+}
+
+.disabled {
+  background: #36464D;
+  cursor: not-allowed;
+  opacity: 0.7;
+  
+  &:hover {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+.scrollHint {
+  font-size: 12px;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .termsModal {
+    max-height: 90vh;
+  }
+  
+  .termsModalHeader {
+    padding: 15px;
+    font-size: 20px;
+  }
+  
+  .termsModalContent {
+    padding: 20px;
+  }
+  
+  .termsAcceptButton {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .termsModalOverlay {
+    padding: 10px;
+  }
+  
+  .termsModalHeader {
+    font-size: 18px;
+  }
+  
+  .termsModalContent {
+    padding: 15px;
+    font-size: 14px;
+    
+    h3 {
+      font-size: 16px;
+    }
+  }
+}

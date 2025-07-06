@@ -7,6 +7,7 @@ import {
   Header,
 } from "@/components/layout";
 import { Loading } from "@/components/UX/Loading/Loading";
+import TermsModal from "@/components/UX/TermsModal/TermsModal";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
@@ -16,6 +17,7 @@ export default function Home() {
     <main>
       <Header />
       <Loading  />
+      <TermsModal />
       <div className={status!=''? "opacity-10" : ""}>
         <Banner />
         {/* <HowItWorks /> */}
