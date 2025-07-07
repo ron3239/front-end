@@ -76,7 +76,7 @@ const data = {
   
   const result = await SendTransaction(recipient, amount/ 1_000_000_000, payload)
   // getTestnetBalance('0QAUFc9Jm4bL9Y4E_SyYZ3uxmIe3pAkdbECXaAfV-IKTZprA')
-  if (result.status==500){
+  if (result.error!>500){
     return NextResponse.json(result,{status:500})
 }
   const finish = {

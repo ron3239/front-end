@@ -1,8 +1,8 @@
-﻿"use client";
-import Image from "next/image";
-import { useState } from "react";
-import styles from "./BuySection.module.scss";
-import axios from "axios";
+﻿'use client';
+import Image from 'next/image';
+import { useState } from 'react';
+import styles from './BuySection.module.scss';
+import axios from 'axios';
 
 const starOptions = [
   { value: 50, label: "50 Звезд", stars: 1 },
@@ -18,15 +18,43 @@ const starOptions = [
 ];
 
 export const BuySection = () => {
-  const [selectedStars, setSelectedStars] = useState<number>(50);
-  const [username, setUsername] = useState<string>("");
+  const [selectedStars, setSelectedStars] = useState<string>('50');
+  const [username, setUsername] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Автоматически корректируем значение если < 50
-  const validateStars = (value: number) => {
-    return value < 50 ? 50 : value;
+  // Проверка является ли значение числом
+  const isNumeric = (value: string): boolean => {
+    return !isNaN(parseFloat(value)) && isFinite(Number(value));
   };
 
+  // Корректировка значения звезд
+  const validateStars = (value: string): string => {
+    if (!isNumeric(value)) return '50';
+    
+    const numValue = Number(value);
+    if (numValue < 50) return '50';
+    if (numValue > 50000) return '50000';
+    return value;
+  };
+
+  // Обработчик изменения количества звезд
+  const handleStarsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedStars(e.target.value);
+  };
+
+  // Обработчик потери фокуса
+  const handleBlur = () => {
+    setSelectedStars(validateStars(selectedStars));
+  };
+
+  // Форматирование цены
+  const formatPrice = (stars: string): string => {
+    const numStars = isNumeric(stars) ? Number(stars) : 50;
+    const price = Math.round(numStars * 1.37 * 1.025);
+    return new Intl.NumberFormat('ru-RU').format(price);
+  };
+
+  // Обработчик отправки формы
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -43,25 +71,16 @@ export const BuySection = () => {
       setIsLoading(true);
       const response = await axios.post("/api/buyStar", {
         username: username.trim(),
-        quantity: finalStars,
+        quantity: Number(finalStars),
       });
-      console.log(response)
+      console.log(response.data);
       alert("Покупка успешно оформлена!");
     } catch (error) {
       console.error("Ошибка при оформлении покупки:", error);
+      alert("Произошла ошибка при оформлении покупки");
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleBlur = () => {
-    setSelectedStars(validateStars(selectedStars));
-  };
-
-  // Форматируем цену с разделителями тысяч
-  const formatPrice = (stars: number) => {
-    const price = Math.round(stars * 1.37 * 1.025);
-    return new Intl.NumberFormat('ru-RU').format(price);
   };
 
   return (
@@ -70,10 +89,10 @@ export const BuySection = () => {
         <form className={styles.orderForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label className={styles.usernameLabel}>
-              <Image
-                src="/images/Glass.svg"
-                alt="Иконка пользователя"
-                width={24}
+              <Image 
+                src="/images/Glass.svg" 
+                alt="Иконка пользователя" 
+                width={24} 
                 height={24}
                 className={styles.icon}
               />
@@ -110,7 +129,7 @@ export const BuySection = () => {
               min="1"
               placeholder="Введите количество"
               value={selectedStars}
-              onChange={(e) => setSelectedStars(Number(e.target.value))}
+              onChange={handleStarsChange}
               onBlur={handleBlur}
               className={styles.inputField}
             />
@@ -123,9 +142,9 @@ export const BuySection = () => {
                   key={option.value}
                   type="button"
                   className={`${styles.starOption} ${
-                    selectedStars === option.value ? styles.selected : ""
+                    selectedStars === String(option.value) ? styles.selected : ""
                   }`}
-                  onClick={() => setSelectedStars(option.value)}
+                  onClick={() => setSelectedStars(String(option.value))}
                 >
                   <div className={styles.starOptionLeft}>
                     {Array.from({ length: option.stars }).map((_, i) => (
@@ -141,7 +160,7 @@ export const BuySection = () => {
                     <span>{option.label}</span>
                   </div>
                   <span className={styles.price}>
-                    {formatPrice(option.value)}₽
+                    {formatPrice(String(option.value))}₽
                   </span>
                 </button>
               ))}

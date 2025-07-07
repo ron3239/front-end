@@ -2,6 +2,7 @@ import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { mnemonicToWalletKey } from "ton-crypto";
 import { TonClient, WalletContractV4, fromNano, internal } from "ton";
 import { Address } from "@ton/core";
+import { error } from "console";
 
 export const SendTransaction = async (
   recipient: string,
@@ -22,7 +23,7 @@ export const SendTransaction = async (
     // 2. Загрузка мнемоники с валидацией
     const mnemonic = process.env.MNEMONIC?.split(' ') || [];
     if (mnemonic.length !== 24) {
-      throw new Error('Invalid mnemonic length (expected 24 words)');
+      return {error:511}
     }
 
     // 3. Генерация ключей с задержкой
@@ -51,7 +52,7 @@ export const SendTransaction = async (
       console.log(`amount: ${amount} TON`);
       if (Number(fromNano(balance)) < amount) {
 
-        return {status:500,error: 'no have balance', balance: fromNano(balance)} //в долларах
+        return {error:512}
       }
     } catch (e) {
       console.error("Ошибка получения баланса:", e);
@@ -108,8 +109,7 @@ export const SendTransaction = async (
     };
 
   } catch (error) {
-    console.error("Ошибка при отправке транзакции:", error);
-    throw error;
+    return {error:513}
   }
 };
 
