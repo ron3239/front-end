@@ -2,7 +2,6 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { SendTransaction } from "@/utils/TonClient";
-import { error } from "console";
 
 const URL = `https://fragment.com/api?hash=${process.env.NEXT_PUBLIC_FRAGMENT_HASH}`;
   const HEADERS = {
