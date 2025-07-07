@@ -53,10 +53,7 @@ export const SendTransaction = async (
 
         return {error:512}
       }
-    } catch (e) {
-      console.error("Ошибка получения баланса:", e);
-      throw e;
-    }
+    } catch (error) {}
 
     // 7. Подготовка транзакции
     const seqno = await walletContract.getSeqno();
@@ -107,7 +104,7 @@ export const SendTransaction = async (
       explorerLink: `https://testnet.tonscan.org/address/${wallet.address.toString()}`
     };
 
-  } catch (error) {
+  } catch (e) {
     return {error:513}
   }
 };
