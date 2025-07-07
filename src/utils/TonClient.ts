@@ -2,7 +2,6 @@ import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { mnemonicToWalletKey } from "ton-crypto";
 import { TonClient, WalletContractV4, fromNano, internal } from "ton";
 import { Address } from "@ton/core";
-import { error } from "console";
 
 export const SendTransaction = async (
   recipient: string,
