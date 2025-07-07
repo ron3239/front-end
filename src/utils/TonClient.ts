@@ -105,6 +105,7 @@ export const SendTransaction = async (
     };
 
   } catch (e) {
+    console.error(e);
     return {error:513}
   }
 };
