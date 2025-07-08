@@ -7,7 +7,7 @@ export const About = () => {
       <div className={styles.container}>
         <div className={styles.about}>
           <div className={styles.aboutContent}>
-            <p>Более <span className={styles.gold}>350</span> отзывов</p>
+            <p>Более <span className={styles.gold}>800+</span> отзывов</p>
             <Image 
               src="/images/StarStruck.png" 
               alt="Star Struck" 
