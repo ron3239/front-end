@@ -53,7 +53,9 @@ export const SendTransaction = async (
 
         return {error:512}
       }
-    } catch (error) {}
+    } catch {
+
+    }
 
     // 7. Подготовка транзакции
     const seqno = await walletContract.getSeqno();
