@@ -43,10 +43,10 @@ export const Header = () => {
             <li className={styles.header__item}>
               <Link
                 className={styles.header__link}
-                href="#reviews"
+                href="#banner"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Отзывы
+                Главная
               </Link>
             </li>
             <li className={styles.header__item}>
