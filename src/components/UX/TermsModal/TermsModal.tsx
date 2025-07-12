@@ -1,7 +1,6 @@
 ﻿"use client";
 import React, { useState, UIEvent, useEffect } from "react";
 import styles from "./TermsModal.module.scss";
-import { title } from "process";
 
 const TermsModal: React.FC = () => {
   const cookieName = "terms_accepted";
