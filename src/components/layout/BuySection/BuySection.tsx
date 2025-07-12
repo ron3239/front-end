@@ -5,7 +5,7 @@ import styles from "./BuySection.module.scss";
 import axios from "axios";
 import { useDispatch, } from "react-redux";
 import { setOpen } from "@/store/instruction/instructionSlice";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 
 const starOptions = [
@@ -26,7 +26,7 @@ export const BuySection = () => {
   const [username, setUsername] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const router = useRouter()
+  // const router = useRouter()
 
   // Проверка является ли значение числом
   const isNumeric = (value: string): boolean => {

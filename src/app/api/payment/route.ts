@@ -1,19 +1,13 @@
 import { Yookassa } from "@/utils/Yookassa";
 import { NextResponse } from "next/server";
+import { IForm } from "@/types/IForm";
 
 const yookassa = new Yookassa();
-
-interface IForm {
-  countStar: number;
-  price: number;
-  username: string;
-}
-
 export async function POST(request: Request) {
   try {
     const data: IForm = await request.json();
-    const description = `Покупка ${data.countStar} звезд для @${data.username}`;
-    const returnUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/payment/status`;
+    const description = `Покупка ${data.countStar} звезд для @${data.userName}`;
+    // const returnUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/payment/status`;
 
     // 1. Создаем платеж (деньги замораживаются)
     const payment = await yookassa.yookassacreatePayment(data.price, description);

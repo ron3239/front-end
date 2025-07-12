@@ -21,11 +21,11 @@ export async function POST(request: Request) {
         await yookassa.capturePayment(payment.id,payment.amount);
       } else {
         // 5. Если API отказал - отменяем холд
-        await yookassa.cancelPayment(payment.id,payment.amount);
+        await yookassa.cancelPayment(payment.id);
       }
     } catch (error) {
       // 6. При ошибке сети тоже отменяем
-      await yookassa.cancelPayment(payment.id,payment.amount);
+      await yookassa.cancelPayment(payment.id);
     }
   }
 

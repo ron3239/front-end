@@ -56,7 +56,7 @@ export class Yookassa {
       throw error;
     }
   };
-  cancelPayment = async (paymentId: string, amount: number) => {
+  cancelPayment = async (paymentId: string, ) => {
     try {
       await this.checkout.cancelPayment(paymentId);
       return true;
