@@ -1,0 +1,68 @@
+import { YooCheckout, ICreatePayment } from "@a2seven/yoo-checkout";
+
+export class Yookassa {
+  checkout: YooCheckout;
+  idempotenceKey: string;
+  constructor() {
+    this.checkout = new YooCheckout({
+      shopId: "1123659",
+      secretKey: "test_dosqwTmB9NxvFgFY91xLIfhyNmWti0Xk53zOZpU_1ww",
+    });
+    this.idempotenceKey = Date.now().toString();
+  }
+
+  yookassacreatePayment = async (
+    amount: number,
+    description?: string,
+    idempotenceKey: string = this.idempotenceKey,
+    currency: string = "RUB"
+  ) => {
+    const createPayload: ICreatePayment = {
+      amount: {
+        value: amount.toFixed(2),
+        currency,
+      },
+      payment_method_data: {
+        type: "bank_card",
+      },
+      confirmation: {
+        type: "redirect",
+        return_url: "http://localhost:3000", // Замените на ваш URL
+      },
+      capture: false,
+      description,
+    };
+    try {
+      console.log("qwe");
+      return await this.checkout.createPayment(createPayload, idempotenceKey);
+    } catch (error) {
+      console.error("Payment creation error:", error);
+    }
+  };
+
+  capturePayment = async (paymentId: string, amount: number) => {
+    const capturePayload: ICreatePayment = {
+      amount: {
+        value: amount.toFixed(2),
+        currency: "RUB",
+      },
+    };
+
+    try {
+      await this.checkout.capturePayment(paymentId, capturePayload);
+      return true;
+    } catch (error) {
+      console.error("Payment capture error:", error);
+      throw error;
+    }
+  };
+  cancelPayment = async (paymentId: string, amount: number) => {
+    try {
+      await this.checkout.cancelPayment(paymentId);
+      return true;
+    } catch (error) {
+      console.error("Payment capture error:", error);
+      throw error;
+    }
+  };
+}

@@ -27,11 +27,6 @@ export async function POST(request: Request) {
     },
     HEADERS
   );
-  // console.log("!!!!", responseRecipient.data);
-  // console.log("!!!!", quantity, typeof quantity);
-  //-----------------------------------------------------------
-
-  // const response = await axios.post()
   const buyResponse = await axios.post(
     URL,
     {
@@ -41,8 +36,6 @@ export async function POST(request: Request) {
     },
     HEADERS
   );
-  // console.log("!!!!", buyResponse.data);
-
 const data = {
       address: "0:1415cf499b86cbf58e04fd2c98677bb19887b7a4091d6c40976807d5f8829366",
       chain: "-3",
@@ -67,8 +60,6 @@ const data = {
     HEADERS
   )
 
-  // console.log(Fetch_buy_link.data)
-
   const recipient = Fetch_buy_link.data.transaction.messages[0].address
   const amount = Fetch_buy_link.data.transaction.messages[0].amount
   const payload = Fetch_buy_link.data.transaction.messages[0].payload
@@ -90,7 +81,6 @@ const data = {
     }
   }
   return NextResponse.json(finish);
-  //Fetch_buy_link.data.transactionc[0].address,Fetch_buy_link.data.transactionc[0].amount,Fetch_buy_link.data.transactionc[0].payload
 }
 
 

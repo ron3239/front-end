@@ -1,0 +1,234 @@
+﻿.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background-color: #36464D;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.title {
+  color: #FFD951;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  text-align: center;
+  padding-right: 40px;
+}
+
+.step {
+  background-color: rgba(3, 22, 31, 0.6);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stepNumber {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #1376a8 0%, #5400fd 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stepTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: #68B5DC;
+  margin: 0;
+}
+
+.stepContent {
+  padding-left: 8px;
+  
+  p {
+    margin: 16px 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.tipsList {
+  padding-left: 24px;
+  margin: 20px 0;
+  
+  li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  code {
+    background-color: #08364D;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #FFD951;
+  }
+}
+
+.columns {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  
+  p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+  }
+}
+
+.exampleImage {
+  border-radius: 8px;
+  border: 1px solid #08364D;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: #08364D;
+  border-radius: 8px;
+  margin-top: 32px;
+  border-left: 4px solid #FFD951;
+  
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    padding: 24px;
+    max-width: 95%;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .step {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .stepTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+  
+  .stepHeader {
+    gap: 12px;
+  }
+  
+  .stepNumber {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .note {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}

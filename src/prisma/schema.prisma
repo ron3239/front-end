@@ -1,0 +1,25 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Post {
+    id          Int      @id @default(autoincrement())
+    username    String
+    amount      Int
+    amountStars Int
+    status PostStatus
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+enum PostStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+

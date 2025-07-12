@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@a2seven/yoo-checkout": "^1.1.4",
     "@orbs-network/ton-access": "github:orbs-network/ton-access",
     "@reduxjs/toolkit": "^2.8.2",
     "@ton/core": "^0.61.0",
@@ -24,7 +25,8 @@
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "ton": "^13.9.0",
-    "ton-crypto": "^3.2.0"
+    "ton-crypto": "^3.2.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

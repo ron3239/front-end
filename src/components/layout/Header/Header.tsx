@@ -61,17 +61,17 @@ export const Header = () => {
             <li className={styles.header__item}>
               <Link
                 className={styles.header__link}
-                href="https://t.me/q0unique0"
+                href="https://t.me/sertysq"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Поддержка{" "}
                 <Image
-                  src="/images/telegram.png"
+                  src="/images/avatarGroup.png"
                   alt="Telegram"
-                  width={30}
-                  height={30}
+                  width={80}
+                  height={80}
                   className={styles.telegram}
                 />
               </Link>

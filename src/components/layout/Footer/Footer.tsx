@@ -55,24 +55,21 @@ export const Footer = () => {
         </div>
 
         <div className={styles.mainLinks}>
-          <Link href="#howItWorks" className={styles.link}>
-            Как это работает
-          </Link>
-          <Link href="#reviews" className={styles.link}>
+          <Link href="https://t.me/misstxbp" className={styles.link}>
             Отзывы
           </Link>
           <Link href="#buy" className={styles.link}>
             Купить
           </Link>
           <Link
-            href="https://t.me/q0unique0"
+            href="https://t.me/sertysq"
             target="_blank"
             className={styles.footerLink}
           >
             Поддержка
             <Image
               className={styles.telegramIcon}
-              src={"/images/telegram.png"}
+              src={"/images/avatarGroup.png"}
               alt="Telegram"
               width={30}
               height={30}

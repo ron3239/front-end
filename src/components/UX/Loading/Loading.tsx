@@ -49,7 +49,7 @@ const statusConfig: Record<StatusType, StatusConfig> = {
 
 export const Loading: FC = () => {
   // Получаем статус с явным приведением типа
-  const status = useSelector((state: RootState) => state.status as StatusType);
+  const status = useSelector((state: RootState) => state.statePay.status as StatusType);
 
   const dispatch = useDispatch();
 

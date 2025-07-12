@@ -1,8 +1,12 @@
-﻿'use client';
-import Image from 'next/image';
-import { useState } from 'react';
-import styles from './BuySection.module.scss';
-import axios from 'axios';
+﻿"use client";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "./BuySection.module.scss";
+import axios from "axios";
+import { useDispatch, } from "react-redux";
+import { setOpen } from "@/store/instruction/instructionSlice";
+import { useRouter } from "next/navigation";
+
 
 const starOptions = [
   { value: 50, label: "50 Звезд", stars: 1 },
@@ -18,9 +22,11 @@ const starOptions = [
 ];
 
 export const BuySection = () => {
-  const [selectedStars, setSelectedStars] = useState<string>('50');
-  const [username, setUsername] = useState<string>('');
+  const [selectedStars, setSelectedStars] = useState<string>("50");
+  const [username, setUsername] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter()
 
   // Проверка является ли значение числом
   const isNumeric = (value: string): boolean => {
@@ -29,11 +35,11 @@ export const BuySection = () => {
 
   // Корректировка значения звезд
   const validateStars = (value: string): string => {
-    if (!isNumeric(value)) return '50';
-    
+    if (!isNumeric(value)) return "50";
+
     const numValue = Number(value);
-    if (numValue < 50) return '50';
-    if (numValue > 50000) return '50000';
+    if (numValue < 50) return "50";
+    if (numValue > 50000) return "50000";
     return value;
   };
 
@@ -51,7 +57,7 @@ export const BuySection = () => {
   const formatPrice = (stars: string): string => {
     const numStars = isNumeric(stars) ? Number(stars) : 50;
     const price = Math.round(numStars * 1.37 * 1.025);
-    return new Intl.NumberFormat('ru-RU').format(price);
+    return new Intl.NumberFormat("ru-RU").format(price);
   };
 
   // Обработчик отправки формы
@@ -69,12 +75,13 @@ export const BuySection = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("/api/buyStar", {
+      const response = await axios.post("/api/payment", {
         username: username.trim(),
         quantity: Number(finalStars),
+        price: Number(formatPrice(finalStars)),
       });
       console.log(response.data);
-      alert("Покупка успешно оформлена!");
+     window.location.href = response.data.confirmation_url;
     } catch (error) {
       console.error("Ошибка при оформлении покупки:", error);
       alert("Произошла ошибка при оформлении покупки");
@@ -89,10 +96,10 @@ export const BuySection = () => {
         <form className={styles.orderForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label className={styles.usernameLabel}>
-              <Image 
-                src="/images/Glass.svg" 
-                alt="Иконка пользователя" 
-                width={24} 
+              <Image
+                src="/images/Glass.svg"
+                alt="Иконка пользователя"
+                width={24}
                 height={24}
                 className={styles.icon}
               />
@@ -133,6 +140,9 @@ export const BuySection = () => {
               onBlur={handleBlur}
               className={styles.inputField}
             />
+            <p className={styles.instruction_text} onClick={()=>dispatch(setOpen())}>
+              Инструкция
+            </p>
           </div>
 
           <div className={styles.starsSelection}>
@@ -140,9 +150,11 @@ export const BuySection = () => {
               {starOptions.map((option) => (
                 <button
                   key={option.value}
-                  type="button"
+                  type="submit"
                   className={`${styles.starOption} ${
-                    selectedStars === String(option.value) ? styles.selected : ""
+                    selectedStars === String(option.value)
+                      ? styles.selected
+                      : ""
                   }`}
                   onClick={() => setSelectedStars(String(option.value))}
                 >
@@ -168,7 +180,8 @@ export const BuySection = () => {
           </div>
 
           <button
-            type="submit"
+            type="submit" //submit
+            // onClick={() => router.push('/buyForm')}
             className={styles.buyButton}
             disabled={isLoading}
           >

@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     );
 
     // 4. Возвращаем успешный ответ
-    return NextResponse.json(response.data);
+    return NextResponse.json(response.status);
     
   
 }

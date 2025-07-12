@@ -1,4 +1,5 @@
-// type IForm={
-//   userNama:string         
-//   countStar:number       
-// }
+type IForm={
+  userName:string         
+  countStar:number       
+  price:number
+}
