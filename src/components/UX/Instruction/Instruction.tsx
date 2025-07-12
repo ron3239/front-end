@@ -96,7 +96,7 @@ export const Instruction: FC = () => {
               className={styles.exampleImage}
               priority
             />
-            <p>Нажмите "Продолжить" и следуйте инструкциям платежной системы</p>
+            <p>Нажмите &ldquo;Продолжить&ldquo; и следуйте инструкциям платежной системы</p>
           </div>
         </div>
 

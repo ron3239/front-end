@@ -1,17 +1,17 @@
 ﻿
-import React,{FC} from 'react';
-import { Header } from '@/components/layout';
-import { PayForm } from '@/components/UX/PayForm/PayForm';
+// import React,{FC} from 'react';
+// import { Header } from '@/components/layout';
+// import { PayForm } from '@/components/UX/PayForm/PayForm';
 
-export const PayScreen:FC = ({
+// export const PayScreen:FC = ({
 
-}) => {
-  return (
-    <div >
-      <Header/>
-      <PayForm/>
-    </div>
-  );
-};
+// }) => {
+//   return (
+//     <div >
+//       <Header/>
+//       <PayForm/>
+//     </div>
+//   );
+// };
 
-PayScreen.displayName = 'PayScreen';
+// PayScreen.displayName = 'PayScreen';
