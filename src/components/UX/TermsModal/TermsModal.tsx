@@ -1,83 +1,131 @@
-﻿'use client'
-import React, { useState, UIEvent, useEffect } from 'react';
-import styles from './TermsModal.module.scss';
+﻿"use client";
+import React, { useState, UIEvent, useEffect } from "react";
+import styles from "./TermsModal.module.scss";
+import { title } from "process";
 
 const TermsModal: React.FC = () => {
-    const cookieName = 'terms_accepted';
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolledToBottom, setScrolledToBottom] = useState(false);
+  const cookieName = "terms_accepted";
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolledToBottom, setScrolledToBottom] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+  const data = [
+    {
+      title: "Правила использования сервиса misst shop",
+      content: `Принимая решение воспользоваться нашим сервисом, вы подтверждаете своё согласие со следующими условиями:
 
-    useEffect(() => {
-        // Проверяем cookies только на клиенте после монтирования
-        const accepted = document.cookie.includes(`${cookieName}=access`);
-        if (accepted==false) {
-            setIsOpen(true);
-        }
-    }, []);
+1. Географическая доступность
+Сервис не доступен для резидентов США и лиц, связанных с американской юрисдикцией.
 
-    const handleScroll = (e: UIEvent<HTMLDivElement>) => {
-        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-        const isBottom = scrollTop + clientHeight >= scrollHeight - 20;
-        setScrolledToBottom(isBottom);
-    };
+2. Правовые требования
+Вы обязаны убедиться, что использование сервиса разрешено законодательством вашей страны.
 
-    const handleAccept = () => {
-        // Устанавливаем cookie на клиенте
-        document.cookie = `${cookieName}=access; path=/`;
-        setIsOpen(false);
-    };
+3. Ответственность
+Администрация сервиса не несёт ответственности за возможные убытки или ущерб, возникшие в результате его использования
 
-    if (!isOpen) return null;
-    
-    return (
-        <div className={styles.termsModalOverlay}>
-            <div className={styles.termsModal}>
-                <div className={styles.termsModalHeader}>
-                    <h2>Пользовательское соглашение</h2>
-                </div>
-                
-                <div 
-                    className={styles.termsModalContent}
-                    onScroll={handleScroll}
-                >
-                    <p>qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+4. Законность операций
+Все проводимые транзакции должны соответствовать международному праву и не нарушать санкционные режимы.
 
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+5. Информационное назначение
+Материалы сервиса носят ознакомительный характер и не являются профессиональной рекомендацией.
 
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                        qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-                    </p>
-                </div>
-                
-                <div className={styles.termsModalFooter}>
-                    <button
-                        onClick={handleAccept}
-                        disabled={!scrolledToBottom}
-                        className={`${styles.termsAcceptButton} ${
-                            !scrolledToBottom ? styles.disabled : ''
-                        }`}
-                    >
-                        Принимаю условия
-                        {!scrolledToBottom && (
-                            <span className={styles.scrollHint}>(прокрутите до конца)</span>
-                        )}
-                    </button>
-                </div>
-            </div>
+6. Технические работы
+Мы оставляем за собой право временно ограничивать доступ к некоторым функциям для проведения обновлений.
+
+7. Техническая компетентность
+Вы подтверждаете наличие достаточных знаний для безопасного использования криптовалютных сервисов.
+
+8. Правовое соответствие
+Использование сервиса должно осуществляться в строгом соответствии с применимым законодательством.
+
+9. Осознание рисков
+Вы принимаете на себя все возможные риски, связанные с использованием блокчейн-технологий.
+
+10. Санкционные ограничения
+Запрещено использование сервиса лицами и организациями, включёнными в международные санкционные списки.
+        `,
+    },
+    {
+      title: "Политика обработки персональных данных",
+      content: `При пользовании нашими сервисами вы автоматически принимаете следующие условия:
+
+1. Собираемые сведения
+В процессе работы сервиса мы фиксируем необходимый минимум информации для корректного выполнения заказов и совершенствования качества услуг.
+
+2. Принципы работы с информацией
+Все полученные данные хранятся с применением современных средств защиты и используются строго по назначению - для обработки запросов и поддержания обратной связи.
+
+3. Передача данных
+Ваши личные сведения не подлежат разглашению третьим сторонам, за исключением ситуаций, когда этого требует законодательство или технические особенности проведения платежей.
+
+4. Принятие условий
+Факт использования платформы означает ваше согласие с изложенными правилами.
+
+Порядок возврата платежей
+
+В случае технического сбоя, приведшего к непоставке виртуальных активов в течение суток после оплаты, клиент вправе инициировать процедуру возврата. Возврат производится исключительно на исходный платежный инструмент.
+
+Срок обработки возвратных операций составляет от 2 до 7 банковских дней после одобрения заявки.
+
+Ключевое условие:
+возможность возврата сохраняется только до момента попадания транзакции в блокчейн. После фиксации операции в распределенном реестре возврат средств технически невозможен, независимо от наличия ошибок в отображении статуса перевода.
+        `,
+    },
+  ];
+
+  useEffect(() => {
+    // Проверяем cookies только на клиенте после монтирования
+    const accepted = document.cookie.includes(`${cookieName}=access`);
+    if (accepted == false) {
+      setIsOpen(true);
+    }
+  }, []);
+
+  const handleScroll = (e: UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    const isBottom = scrollTop + clientHeight >= scrollHeight - 20;
+    setScrolledToBottom(isBottom);
+  };
+
+  const handleAccept = () => {
+    if (activeTab == 0) {
+      setActiveTab((res) => res + 1);
+      setScrolledToBottom(false);
+    } else {
+      document.cookie = `${cookieName}=access; path=/`;
+      setIsOpen(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className={styles.termsModalOverlay}>
+      <div className={styles.termsModal}>
+        <div className={styles.termsModalHeader}>
+          <h2>{data[activeTab].title}</h2>
         </div>
-    );
+
+        <div className={styles.termsModalContent} onScroll={handleScroll}>
+          <p>{data[activeTab].content}</p>
+        </div>
+
+        <div className={styles.termsModalFooter}>
+          <button
+            onClick={handleAccept}
+            disabled={!scrolledToBottom}
+            className={`${styles.termsAcceptButton} ${
+              !scrolledToBottom ? styles.disabled : ""
+            }`}
+          >
+            {activeTab < data.length - 1 ? "Далее" : "Принимаю условия"}
+            {!scrolledToBottom && (
+              <span className={styles.scrollHint}>(прокрутите до конца)</span>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default TermsModal;
