@@ -14,6 +14,7 @@ export async function POST(request: Request) {
     console.log('!!!')
 
     try {
+      //todo выдает ошибку Отправить запрос и вывести в консоль
         //todo 3. Отправляем
         const apiResponse = await axios.post('/api/buyStar',{username:payment.username,quantity:payment.amount})
 

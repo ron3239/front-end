@@ -67,6 +67,16 @@ export const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Поддержка{" "}
+                </Link>
+            </li>
+                        <li className={styles.header__item}>
+              <Link
+                className={styles.header__link}
+                href="https://t.me/misstshop"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Image
                   src="/images/avatarGroup.png"
                   alt="Telegram"
