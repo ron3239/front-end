@@ -27,7 +27,7 @@ export class Yookassa {
       },
       confirmation: {
         type: "redirect",
-        return_url: "http://localhost:3000", // Замените на ваш URL
+        return_url: "/", // Замените на ваш URL
       },
       capture: false,
       description,
