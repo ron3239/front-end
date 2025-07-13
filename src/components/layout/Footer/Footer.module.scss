@@ -1,10 +1,75 @@
 ﻿.footer {
-  background-color: #08364D;
-  padding: 40px 20px;
-  color: rgba(255, 255, 255, 1);
+  background-color: rgba(3, 22, 31, 1); // Основной темный фон
+  padding: 80px 20px;
+  color: #FFFFFF;
+  font-family: "Inter", sans-serif;
   
   @media (max-width: 768px) {
-    padding: 30px 15px;
+    padding: 60px 15px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85); // Более темный оверлей
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background-color: rgba(36, 46, 52, 0.95); // Темный фон модалки
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid #68B5DC; // Акцентный голубой бордер
+  
+  h2 {
+    margin-bottom: 1rem;
+    color: #FFD951; // Желтый заголовок
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
+
+.modalText {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #E0E0E0; // Светло-серый текст
+  
+  pre {
+    white-space: pre-wrap;
+    font-family: inherit;
+    margin: 0;
+  }
+}
+
+.closeButton {
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #1376a8 0%, #5400fd 100%); // Градиент как в кнопке покупки
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(19, 118, 168, 0.3);
   }
 }
 
@@ -14,71 +79,6 @@
   align-items: flex-start;
   margin-bottom: 30px;
   flex-wrap: wrap;
-  gap: 20px;
-  
-  @media (max-width: 576px) {
-    flex-direction: column;
-    gap: 0;
-  }
-}
-
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.headerLogo {
-  width: 105px;
-  height: auto;
-}
-
-.copyright {
-  font-size: 8px;
-  line-height: 1.5;
-  opacity: 0.8;
-}
-.copyrightBig {
-  font-size: 14px;
-  line-height: 1.5;
-  opacity: 0.8;
-}
-.infoDiv{
-  display: flex;
-  gap: 10px;
-    @media (max-width: 576px) {
-    flex-direction: column;
-  }
-
-}
-
-.contact {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  
-  a {
-    color: rgba(255, 255, 255, 1);
-    text-decoration: none;
-    font-size: 16px;
-    transition: opacity 0.3s;
-    
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
-.divider {
-  border: 0;
-  border-top: 1px solid rgba(221, 221, 221, 0.2);
-  margin: 20px 0;
-}
-
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   gap: 30px;
   
   @media (max-width: 768px) {
@@ -87,44 +87,101 @@
   }
 }
 
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+}
+
+.headerLogo {
+  width: 105px;
+  height: auto;
+  filter: brightness(0) invert(1); // Лого белого цвета
+}
+
+.copyright {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.8;
+  color: #68B5DC; // Голубой текст
+}
+
+.copyrightBig {
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.9;
+  color: #FFFFFF;
+}
+
+.infoDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(104, 181, 220, 0.2); // Голубой делитель
+  margin: 30px 0;
+  
+  @media (max-width: 768px) {
+    margin: 20px 0;
+  }
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
 .legalLinks {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .mainLinks {
   display: flex;
   gap: 30px;
+  align-items: center;
   flex-wrap: wrap;
   
   @media (max-width: 576px) {
-    gap: 15px;
+    gap: 20px;
   }
 }
 
 .link {
-  color: rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
-  font-size: 14px;
-  transition: opacity 0.3s;
-      display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: 16px;
-  
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
   
   &:hover {
-    opacity: 0.8;
+    color: #68B5DC; // Голубой при наведении
+    transform: translateY(-1px);
   }
   
   @media (max-width: 576px) {
-    font-size: 13px;
+    font-size: 14px;
   }
-
 }
 
 .footerLink {
@@ -132,20 +189,37 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
+  color: #FFFFFF;
+  font-weight: 600;
   font-size: 16px;
-  transition: opacity 0.3s;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: rgba(104, 181, 220, 0.1); // Голубой фон
   
   &:hover {
-    opacity: 0.8;
+    background: rgba(104, 181, 220, 0.2);
+    transform: translateY(-2px);
   }
 }
 
 .telegramIcon {
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  border-radius: 50%;
   
   &:hover {
     transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(104, 181, 220, 0.5);
   }
+}
+
+// Анимации
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.highlight {
+  animation: pulse 2s infinite;
+  color: #FFD951; // Желтый для выделения
 }
