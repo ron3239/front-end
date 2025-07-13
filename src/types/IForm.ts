@@ -1,5 +1,5 @@
 export type IForm={
-  userName:string         
-  countStar:number       
+  username:string         
+  quantity:number       
   price:number
 }

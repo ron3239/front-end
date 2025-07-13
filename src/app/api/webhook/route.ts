@@ -11,6 +11,7 @@ export async function POST(request: Request) {
   // 2. Обрабатываем только нужные события
   if (event.event === 'payment.waiting_for_capture') {
     const payment = event.object;
+    console.log('!!!')
 
     try {
         //todo 3. Отправляем

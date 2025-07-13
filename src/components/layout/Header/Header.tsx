@@ -61,7 +61,7 @@ export const Header = () => {
             <li className={styles.header__item}>
               <Link
                 className={styles.header__link}
-                href="https://t.me/sertysq"
+                href="https://t.me/q0unique0"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}

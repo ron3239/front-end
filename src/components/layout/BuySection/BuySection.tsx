@@ -113,7 +113,7 @@ export const BuySection = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className={styles.inputField}
-              placeholder="Ваш @username"
+              placeholder="Ваш username"
             />
           </div>
 
