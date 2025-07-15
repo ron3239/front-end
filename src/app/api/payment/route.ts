@@ -8,10 +8,9 @@ export async function POST(request: Request) {
     const data: IForm = await request.json();
     console.log('!!',data)
     const description = `Покупка ${data.quantity} звезд для @${data.username}`;
-    // const returnUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/payment/status`;
 
     // 1. Создаем платеж (деньги замораживаются)
-    const payment = await yookassa.yookassacreatePayment(data.price, description);
+    const payment = await yookassa.yookassacreatePayment(data.price,data, description);
     // console.log(payment)
     return NextResponse.json({
       success: true,

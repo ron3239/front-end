@@ -1,3 +1,4 @@
+import { IForm } from "@/types/IForm";
 import { YooCheckout, ICreatePayment } from "@a2seven/yoo-checkout";
 
 export class Yookassa {
@@ -13,6 +14,7 @@ export class Yookassa {
 
   yookassacreatePayment = async (
     amount: number,
+    data:any,
     description?: string,
     idempotenceKey: string = this.idempotenceKey,
     currency: string = "RUB"
@@ -31,6 +33,10 @@ export class Yookassa {
       },
       capture: false,
       description,
+      metadata:{
+        username:data.username,
+        quantity:data.quantity
+      }
     };
     try {
       console.log("qwe");

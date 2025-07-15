@@ -144,7 +144,7 @@ export const Footer = () => {
               Купить
             </Link>
             <Link
-              href="https://t.me/sertysq"
+              href="https://t.me/q0unique0"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.footerLink}
