@@ -30,7 +30,7 @@ export class Yookassa {
       },
       confirmation: {
         type: "redirect",
-        return_url: "/", // Замените на ваш URL
+        return_url: `${process.env.NEXT_PUBLIC_SITE_URL}`, // Замените на ваш URL
       },
       capture: false,
       description,
