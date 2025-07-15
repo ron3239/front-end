@@ -1,4 +1,4 @@
-import { IForm } from "@/types/IForm";
+// import { IForm } from "@/types/IForm";
 import { YooCheckout, ICreatePayment } from "@a2seven/yoo-checkout";
 
 export class Yookassa {
