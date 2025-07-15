@@ -27,6 +27,7 @@ export async function POST(request: Request) {
     },
     HEADERS
   );
+  console.log('responseRecipient',responseRecipient.data)
   const buyResponse = await axios.post(
     URL,
     {
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
     },
     HEADERS
   );
+  console.log('buyResponse',buyResponse.data)
 const data = {
       address: "0:1415cf499b86cbf58e04fd2c98677bb19887b7a4091d6c40976807d5f8829366",
       chain: "-3",
