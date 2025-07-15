@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         // 5. Если API отказал - отменяем холд
         // await yookassa.cancelPayment(payment.id);
       }
-    } catch (e:any) {
+    } catch (e:unknown) {
       console.error(e)
       // 6. При ошибке сети тоже отменяем
       // await yookassa.cancelPayment(payment.id);
