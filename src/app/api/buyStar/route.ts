@@ -80,7 +80,7 @@ const data = {
       payload
     }
   }
-  return NextResponse.json(finish);
+  return NextResponse.json(finish,{status:200});
 }
 
 
