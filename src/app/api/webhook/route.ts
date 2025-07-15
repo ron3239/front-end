@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       //todo выдает ошибку Отправить запрос и вывести в консоль
         //todo 3. Отправляем
         const apiResponse = await axios.post(`${process.env.NEXT_STIE}/api/buyStar`,{username:payment.metadata.username,quantity:payment.metadata.amount})
+        console.log(apiResponse.data)
 
       if (apiResponse.status==200) {
         // 4. Если API принял - подтверждаем платёж
