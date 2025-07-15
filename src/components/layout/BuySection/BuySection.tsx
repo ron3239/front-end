@@ -18,6 +18,7 @@ const starOptions = [
   { value: 5000, label: "5K Звезд", stars: 3 },
   { value: 10000, label: "10K Звезд", stars: 4 },
   { value: 25000, label: "25K Звезд", stars: 4 },
+
 ];
 
 export const BuySection = () => {
