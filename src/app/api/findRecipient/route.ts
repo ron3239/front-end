@@ -8,14 +8,14 @@ export async function POST(request: Request) {
   
 
     const response = await axios.post(
-      `https://fragment.com/api?hash=${process.env.NEXT_PUBLIC_FRAGMENT_HASH}`,
+      `https://fragment.com/api?hash=${process.env.NEXT_FRAGMENT_HASH}`,
       {
         query: username,
         method: 'searchStarsRecipient'
       },
       {
         headers: {
-          'Cookie': `stel_ssid=${process.env.NEXT_PUBLIC_FRAGMENT_SSID}; stel_token=${process.env.NEXT_PUBLIC_FRAGMENT_TOKEN}`,
+          'Cookie': `stel_ssid=${process.env.NEXT_FRAGMENT_SSID}; stel_token=${process.env.NEXT_FRAGMENT_TOKEN}`,
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         timeout: 10000

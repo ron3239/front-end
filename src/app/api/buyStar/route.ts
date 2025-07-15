@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 import { SendTransaction } from "@/utils/TonClient";
 
-const URL = `https://fragment.com/api?hash=${process.env.NEXT_PUBLIC_FRAGMENT_HASH}`;
+const URL = `https://fragment.com/api?hash=${process.env.NEXT_FRAGMENT_HASH}`;
   const HEADERS = {
     headers: {
-      Cookie: `stel_ssid=${process.env.NEXT_PUBLIC_FRAGMENT_SSID}; stel_dt=${process.env.NEXT_PUBLIC_FRAGMENT_DT}; stel_token=${process.env.NEXT_PUBLIC_FRAGMENT_TOKEN}; stel_ton_token=${process.env.NEXT_PUBLIC_FRAGMENT_TON_TOKEN}`,
+      Cookie: `stel_ssid=${process.env.NEXT_FRAGMENT_SSID}; stel_dt=${process.env.NEXT_FRAGMENT_DT}; stel_token=${process.env.NEXT_FRAGMENT_TOKEN}; stel_ton_token=${process.env.NEXT_FRAGMENT_TON_TOKEN}`,
       "Content-Type": "application/x-www-form-urlencoded",
       "X-Requested-With": "XMLHttpRequest",
       Origin: "https://fragment.com",
@@ -39,8 +39,8 @@ export async function POST(request: Request) {
 const data = {
       address: "0:1415cf499b86cbf58e04fd2c98677bb19887b7a4091d6c40976807d5f8829366",
       chain: "-3",
-      walletStateInit: process.env.NEXT_PUBLIC_FRAGMENT_WALLETS,
-      publicKey: process.env.NEXT_PUBLIC_FRAGMENT_PUBLICKEY,
+      walletStateInit: process.env.NEXT_FRAGMENT_WALLETS,
+      publicKey: process.env.NEXT_FRAGMENTKEY,
       features: JSON.stringify([
         "SendTransaction", 
         { name: "SendTransaction", maxMessages: 255 }
