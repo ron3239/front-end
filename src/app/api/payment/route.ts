@@ -1,11 +1,11 @@
 import { Yookassa } from "@/utils/Yookassa";
 import { NextResponse } from "next/server";
-import { IForm } from "@/types/IForm";
+// import { IForm } from "@/types/IForm";
 
 const yookassa = new Yookassa();
 export async function POST(request: Request) {
   try {
-    const data: IForm = await request.json();
+    const data = await request.json();
     console.log('!!',data)
     const description = `Покупка ${data.quantity} звезд для @${data.username}`;
 
