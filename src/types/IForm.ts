@@ -1,6 +1,6 @@
 
 export type IForm={
   username:string         
-  quantity:number       
+  quantity:string       
   price:number
 }

@@ -75,13 +75,14 @@ export const BuySection = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("/api/payment", {
-        username: username.trim(),
-        quantity: Number(finalStars),
-        price: Number(formatPrice(finalStars)),
-      });
-      console.log(response.data);
-     window.location.href = response.data.confirmation_url;
+      axios.post("https://api/buyStar",{username,selectedStars}).then((response) => {console.log(response)})
+    //   const response = await axios.post("/api/payment", {
+    //     username: username.trim(),
+    //     quantity: Number(finalStars),
+    //     price: Number(formatPrice(finalStars)),
+    //   });
+    //   console.log(response.data);
+    //  window.location.href = response.data.confirmation_url;
     } catch (error) {
       console.error("Ошибка при оформлении покупки:", error);
       alert("Произошла ошибка при оформлении покупки");

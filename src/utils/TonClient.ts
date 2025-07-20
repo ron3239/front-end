@@ -86,18 +86,8 @@ export const SendTransaction = async (
         await sleep(2000 * attempts); // Экспоненциальная задержка
       }
     }
-
-    // 9. Ожидание подтверждения
-    // let currentSeqno = seqno;
-    // let confirmationAttempts = 0;
-    
-
-      // await sleep(2000);
-      // currentSeqno = await walletContract.getSeqno();
-      // confirmationAttempts++;
       console.log(`Ожидание подтверждения... `);
     
-
     return {
       success: true,
       from: wallet.address.toString(),

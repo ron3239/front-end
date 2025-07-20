@@ -1,8 +1,7 @@
-import { Yookassa } from "@/utils/Yookassa";
+
 import { NextResponse } from "next/server";
 // import { IForm } from "@/types/IForm";
 
-const yookassa = new Yookassa();
 export async function POST(request: Request) {
   try {
     const data = await request.json();
