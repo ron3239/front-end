@@ -30,8 +30,11 @@ front-end/
 │   │   │   ├── buyStar/
 │   │   │   ├── findRecipient/
 │   │   │   └── payment/
-│   │   ├──  
-│   │   ├── layout.tsx # Главный layout
+│   │   ├── (Home)/
+│   │   │   ├── Home.tsx
+|   |   |   ├──page.tsx
+|   |   |   └──providers.tsx
+│   │   └──── layout.tsx # Главный layout
 │   │   
 │   ├── components/    # UI компоненты
 │   │   ├── layout/    # Основные секции
