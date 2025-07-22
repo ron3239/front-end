@@ -1,12 +1,14 @@
 import axios from "axios";
 
 interface TransactionMessage {
-  amount: any;
-  payload: any;
   address: string;
+  amount: number;
+  payload: string;
   // Добавьте другие возможные поля при необходимости
 }
-
+interface IgetBuyStarsLink{
+  req_id: string,
+}
 interface BuyStarsResponse {
   transaction: {
     messages: TransactionMessage[];
@@ -58,7 +60,7 @@ class Fragment {
     });
   }
 
-  async getBuyStarsLink(buyResponse:any) {
+  async getBuyStarsLink(buyResponse:IgetBuyStarsLink) {
     const data = {
       address: "0:1415cf499b86cbf58e04fd2c98677bb19887b7a4091d6c40976807d5f8829366",
       chain: "-3",
