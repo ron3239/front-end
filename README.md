@@ -146,7 +146,7 @@ DATABASE_URL=postgres://user:pass@localhost:5432/stars_db
 
 - **Frontend**: 
   ![Next.js](https://img.shields.io/badge/-Next.js-000?logo=next.js)
-  ![React](https://img.shields.io/badge/-ReactJs-99a1b333?logo=react&logoColor=58c4dc)
+  ![React](https://img.shields.io/badge/React-white?logo=react&logoColor=F2065)
   ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript)
   ![Redux](https://img.shields.io/badge/-Redux-764ABC?logo=redux)
   
@@ -175,8 +175,7 @@ MIT License. Смотрите файл [LICENSE](LICENSE) для подробн�
 ---
 
 > **Pet-project** разработан с ❤️ для изучения современных веб-технологий  
-> По вопросам: your.email@example.com  
-> [Демо](https://your-demo-link.com) | [Документация](#) | [Чейнджлог](#)
+> По вопросам: jook323@gmail.com 
 ```
 
 Этот README включает:
