@@ -13,8 +13,7 @@ interface BuyStarsResponse {
   transaction: {
     messages: TransactionMessage[];
   };
-  req_id?: string; // Для использования в getBuyStarsLink
-  // Другие возможные поля ответа
+  req_id?: string;
 }
 
 class Fragment {
@@ -34,7 +33,7 @@ class Fragment {
       timeout: 10000,
     };
   }
-
+  //
   private async makeRequest(data: object) {
     try {
       const response = await axios.post(this.URL, data, this.HEADERS);
@@ -44,14 +43,14 @@ class Fragment {
       throw error;
     }
   }
-
+  //Поиск пользователя в телеграме
   async searchStarsRecipient(username: string) {
     return this.makeRequest({
       query: username,
       method: "searchStarsRecipient",
     });
   }
-
+  //Создание запроса на покупку звезд
   async initBuyStarsRequest(username: string, quantity: string) {
     return this.makeRequest({
       recipient: username,
@@ -59,7 +58,7 @@ class Fragment {
       method: "initBuyStarsRequest",
     });
   }
-
+  //Получение ссылки для покупки звезд
   async getBuyStarsLink(buyResponse:IgetBuyStarsLink) {
     const data = {
       address: "0:1415cf499b86cbf58e04fd2c98677bb19887b7a4091d6c40976807d5f8829366",
@@ -82,7 +81,7 @@ class Fragment {
     return this.makeRequest(data);
   }
 
-
+  //Покупка звезд (searchStarsRecipient, initBuyStarsRequest, getBuyStarsLink)
   async buyStar(userName: string, amount: string): Promise<BuyStarsResponse> {
     try {
       await this.searchStarsRecipient(userName);
