@@ -146,7 +146,7 @@ DATABASE_URL=postgres://user:pass@localhost:5432/stars_db
 
 - **Frontend**: 
   ![Next.js](https://img.shields.io/badge/-Next.js-000?logo=next.js)
-  ![React](https://camo.githubusercontent.com/f93e05694a6f01f2f6a37713a454a942442a5ff2b33083891096a6f7e57842f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656163742d2532333230323332612e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d253233363144414642)
+  ![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react)
   ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript)
   ![Redux](https://img.shields.io/badge/-Redux-764ABC?logo=redux)
   
