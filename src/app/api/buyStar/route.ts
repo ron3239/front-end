@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   const { username, quantity } = await request.json();
 
 
-  const res:any = fragment.buyStar(username,quantity)
+  const res = await fragment.buyStar(username,quantity)
 
   const recipient = res.transaction.messages[0].address
   const amount = res.transaction.messages[0].amount

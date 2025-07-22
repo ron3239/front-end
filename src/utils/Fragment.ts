@@ -1,10 +1,23 @@
 import axios from "axios";
 
+interface TransactionMessage {
+  amount: any;
+  payload: any;
+  address: string;
+  // Добавьте другие возможные поля при необходимости
+}
 
+interface BuyStarsResponse {
+  transaction: {
+    messages: TransactionMessage[];
+  };
+  req_id?: string; // Для использования в getBuyStarsLink
+  // Другие возможные поля ответа
+}
 
 class Fragment {
-  private readonly URL: string;
-  private readonly HEADERS: {};
+  private URL: string;
+  private HEADERS: {};
 
   constructor() {
     this.URL = `https://fragment.com/api?hash=${process.env.NEXT_FRAGMENT_HASH}`;
@@ -67,15 +80,16 @@ class Fragment {
     return this.makeRequest(data);
   }
 
-  async buyStar(userName: string, amount: string): Promise<boolean> {
+
+  async buyStar(userName: string, amount: string): Promise<BuyStarsResponse> {
     try {
       await this.searchStarsRecipient(userName);
       const res = await this.initBuyStarsRequest(userName, amount);
-      await this.getBuyStarsLink(res);
-      return true;
+      const link = await this.getBuyStarsLink(res);
+      return link;
     } catch (error) {
       console.error('Buy star failed:', error);
-      return false;
+      throw error;
     }
   }
 }

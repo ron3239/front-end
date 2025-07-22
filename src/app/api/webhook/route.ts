@@ -1,8 +1,7 @@
-import { Yookassa } from "@/utils/Yookassa";
+
+import { yookassa } from "@/utils/Yookassa";
 import axios from "axios";
 
-
-const yookassa = new Yookassa()
 export async function POST(request: Request) {
   const event = await request.json();
   
@@ -15,22 +14,15 @@ export async function POST(request: Request) {
 
     try {
       console.log(payment)
-      //todo выдает ошибку Отправить запрос и вывести в консоль
-        //todo 3. Отправляем
         const apiResponse = await axios.post(`${process.env.NEXT_STIE}/api/buyStar`,{username:payment.metadata.username,quantity:payment.metadata.quantity})
         console.log(apiResponse.data)
 
       if (apiResponse.status==200) {
-        // 4. Если API принял - подтверждаем платёж
         await yookassa.capturePayment(payment.id,payment.amount);
       } else {
-        // 5. Если API отказал - отменяем холд
-        // await yookassa.cancelPayment(payment.id);
       }
     } catch (e:unknown) {
       console.error(e)
-      // 6. При ошибке сети тоже отменяем
-      // await yookassa.cancelPayment(payment.id);
     }
   }
 
