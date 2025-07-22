@@ -1,4 +1,4 @@
-```markdown
+markdown
 # 🌟 Stars Purchase Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=flat&logo=next.js)](https://nextjs.org/)
@@ -21,32 +21,90 @@
 ## 📂 Структура проекта
 
 
-front-end/
-├── public/            # Статические ресурсы
-│   └── images/        # Изображения и иконки
-├── src/
-│   ├── app/           # Next.js App Router
-│   │   ├── api/       # API endpoints
-│   │   │   ├── buyStar/
-│   │   │   ├── findRecipient/
-│   │   │   └── payment/
-│   │   ├── (Home)/
-│   │   │   ├── Home.tsx
-|   |   |   ├──page.tsx
-|   |   |   └──providers.tsx
-│   │   └──── layout.tsx # Главный layout
-│   │   
-│   ├── components/    # UI компоненты
-│   │   ├── layout/    # Основные секции
-│   │   └── UX/        # Элементы интерфейса
-│   ├── store/         # Redux хранилище
-│   ├── utils/         # Вспомогательные модули
-│   │   ├── Fragment.ts # API для Fragment
-│   │   └── TonClient.ts # TON интеграция
-├── prisma/            # Схема БД
-├── .env               # Переменные окружения
-└── next.config.ts     # Конфиг Next.js
 ```
+└── 📁front-end
+    └── 📁public
+        └── 📁images
+            ├── avatarGroup.png
+            ├── close.png
+            ├── instruction-button.png
+            ├── instruction-input_star.png
+            ├── instruction-select_star.png
+            ├── instruction-username.png
+            ├── logo.svg
+            ├── premStar.svg
+            ├── rocket.png
+            ├── Star.webp
+            ├── StarStruck.png
+            ├── stPlace.png
+            ├── Technologist.png
+    └── 📁src
+        └── 📁app
+            └── 📁(Home)
+                ├── Home.tsx
+                ├── page.tsx
+                ├── providers.tsx
+            └── 📁api
+                └── 📁buyStar
+                    ├── route.ts
+                └── 📁payment
+                    ├── route.ts
+                └── 📁webhook
+                    ├── route.ts
+            ├── favicon.ico
+            ├── globals.css
+            ├── layout.tsx
+        └── 📁components
+            └── 📁layout
+                └── 📁About
+                    ├── About.module.scss
+                    ├── About.tsx
+                └── 📁Banner
+                    ├── Banner.module.scss
+                    ├── Banner.tsx
+                └── 📁BuySection
+                    ├── BuySection.module.scss
+                    ├── BuySection.tsx
+                └── 📁Footer
+                    ├── Footer.module.scss
+                    ├── Footer.tsx
+                └── 📁Header
+                    ├── Header.module.scss
+                    ├── Header.tsx
+                ├── index.ts
+            └── 📁UX
+                └── 📁Instruction
+                    ├── Instruction.module.scss
+                    ├── Instruction.tsx
+                └── 📁Loading
+                    ├── Loading.module.scss
+                    ├── Loading.tsx
+                └── 📁TermsModal
+                    ├── TermsModal.module.scss
+                    ├── TermsModal.tsx
+            ├── index.ts
+        └── 📁store
+            └── 📁instruction
+                ├── instructionSlice.ts
+            └── 📁statePay
+                ├── stateSlice.ts
+            ├── index.ts
+        └── 📁types
+            ├── IForm.ts
+        └── 📁utils
+            ├── Fragment.ts
+            ├── TonClient.ts
+            ├── Yookassa.ts
+    ├── .gitignore
+    ├── eslint.config.mjs
+    ├── next.config.ts
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── README.md
+    └── tsconfig.json
+```
+
 
 ## 🛠 Установка
 
