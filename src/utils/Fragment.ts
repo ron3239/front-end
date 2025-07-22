@@ -17,7 +17,7 @@ interface BuyStarsResponse {
 
 class Fragment {
   private URL: string;
-  private HEADERS: {};
+  private HEADERS: object;
 
   constructor() {
     this.URL = `https://fragment.com/api?hash=${process.env.NEXT_FRAGMENT_HASH}`;
