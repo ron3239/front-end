@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    console.log('!!',data)
     const description = `Покупка ${data.quantity} звезд для @${data.username}`;
 
     // 1. Создаем платеж (деньги замораживаются)

@@ -1,4 +1,5 @@
 'use client'
+import { Instruction, Loading, TermsModal } from "@/components";
 import {
   About,
   Banner,
@@ -6,14 +7,11 @@ import {
   Footer,
   Header,
 } from "@/components/layout";
-import { Instruction } from "@/components/UX/Instruction/Instruction";
 
-import { Loading } from "@/components/UX/Loading/Loading";
-import TermsModal from "@/components/UX/TermsModal/TermsModal";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
-export default function Home() {
+export function HomeMain() {
   const  status  = useSelector((state: RootState) => state.statePay.status);
   return (
     <main>

@@ -5,8 +5,6 @@ import axios from "axios";
 export async function POST(request: Request) {
   const event = await request.json();
   
-
-
   // 2. Обрабатываем только нужные события
   if (event.event === 'payment.waiting_for_capture') {
     const payment = event.object;
