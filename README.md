@@ -1,4 +1,3 @@
-markdown
 # 🌟 Stars Purchase Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-13+-black?style=flat&logo=next.js)](https://nextjs.org/)
