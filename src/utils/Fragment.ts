@@ -4,7 +4,7 @@ interface TransactionMessage {
   address: string;
   amount: number;
   payload: string;
-  // Добавьте другие возможные поля при необходимости
+ 
 }
 interface IgetBuyStarsLink{
   req_id: string,
