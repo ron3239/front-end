@@ -6,7 +6,7 @@ import { instructionSlice } from './instruction/instructionSlice';
 export const store = configureStore({
     reducer: {
     statePay: stateSlice,
-    instruction: instructionSlice.reducer, // Для createSlice и createReducer разный синтаксис
+    instruction: instructionSlice.reducer
   },
 });
 
